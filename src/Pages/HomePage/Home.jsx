@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const Home = () => {
     return (
@@ -6,8 +7,12 @@ const Home = () => {
                 Welcome to Mobipay
             </div>
             <div className="flex flex-col justify-center items-center gap-6">
-                <button className="btn bg-green-700 w-[200px] text-white rounded-full">Login</button>
-                <button className="btn bg-red-700 w-[200px] text-white rounded-full">Register</button>
+                <Link to='/login'>
+                    <button className="btn bg-green-700 w-[200px] text-white rounded-full">Login</button>
+                </Link>
+                <Link to="/register">
+                    <button className="btn bg-red-700 w-[200px] text-white rounded-full">Register</button>
+                </Link>
             </div>
         </div>
     );
