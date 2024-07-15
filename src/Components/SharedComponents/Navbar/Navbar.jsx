@@ -14,11 +14,11 @@ const Navbar = () => {
 
         </>
     return (
-        <div className="w-full h-[50px] fixed z-50 flex items-center justify-center">
+        <div className="bg-blue-100 w-full h-[50px] fixed z-50 flex items-center justify-center">
             <div className="navbar container mx-auto min-w-12  flex justify-center">
 
                 <div className="navbar-start">
-                    <a className="font-semibold text-xl">Hasibul Islam</a>
+                    <a className="font-semibold text-xl">MobiPay</a>
                 </div>
 
                 <div className="navbar-end items-center gap-4 hidden lg:inline-flex font-medium">
