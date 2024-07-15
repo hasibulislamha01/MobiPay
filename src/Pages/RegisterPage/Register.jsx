@@ -1,12 +1,41 @@
+import axios from "axios";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import Select from 'react-select'
+
 
 const Register = () => {
 
+    const serverBaseURL = import.meta.env.VITE_SERVER_LINK
     const { register, handleSubmit, formState: { errors } } = useForm()
 
     const handleSubmittedData = (data) => {
         console.log(data)
+        // axios.post(`${serverBaseURL}/users/pending`, data)
+        //     .then(res => {
+        //         console.log(res.data)
+        //         if (res.data.insertedId) {
+        //             Swal.fire({
+        //                 title: "Success!",
+        //                 text: "Your membership request is in process!",
+        //                 icon: "success"
+        //             });
+        //         } else {
+        //             Swal.fire({
+        //                 title: "Failed!",
+        //                 text: "Try again!",
+        //                 icon: "error"
+        //             });
+        //         }
+        //     }).catch(error => {
+        //         console.error(error.message)
+        //     })
     }
+
+    const options = [
+        { value: 'User', label: 'User' },
+        { value: 'Agent', label: 'Agent' },
+    ]
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center">
@@ -66,8 +95,8 @@ const Register = () => {
                             <span className="label-text">Enter a 5 digit Pin</span>
                         </div>
                         <input
-                            {...register('pin', { 
-                                required: 'Secure Pin is required', 
+                            {...register('pin', {
+                                required: 'Secure Pin is required',
                                 validate: value => value.length === 5 || 'PIN must be 5 digits long.'
                             })}
                             type="number"
@@ -75,10 +104,19 @@ const Register = () => {
                             className="input input-bordered w-full max-w-xs"
                         />
                         {errors.pin && errors.pin.type === "maxLength" || "minLength" && <p className="text-red-400">Pin no must be of 5 digits</p>}
+
                     </div>
+
+
+
                 </div>
 
-
+                <Select
+                    {...register('role', { required: true })}
+                    options={options}
+                    placeholder='Register as'
+                    
+                ></Select>
 
                 <div className="flex justify-center mt-12">
                     <button type="submit" className="btn bg-green-800 text-white rounded-full w-[200px]">Register</button>
