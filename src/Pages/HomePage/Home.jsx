@@ -3,22 +3,24 @@ import useAuth from "../../CustomHooks/useAuth";
 
 import UserView from "./UserView";
 import AgentView from "./AgentView";
-import AdminHome from "./AdminHome";
+import AdminView from "./AdminView";
 import { Toaster } from "react-hot-toast";
-import useGetUserRole from "../../CustomHooks/useGetUserRole";
 import RoleBasedNavigation from "../../Components/SharedComponents/Navbar/RoleBasedNavigation/RoleBasedNavigation";
+import useGetUserData from "../../CustomHooks/useGetUserData";
 
 const Home = () => {
 
     const { user } = useAuth()
-    const userRole = useGetUserRole()
-
+    const userInfo = useGetUserData()
+    const userRole = userInfo?.role?.value;
+    const userStatus = userInfo?.status;
+    console.log(userStatus, userRole)
 
 
 
     console.log(user)
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center gap-12">
             <Toaster></Toaster>
             <div>
                 {
@@ -26,13 +28,20 @@ const Home = () => {
                         userRole === 'User' ?
                             <UserView></UserView> :
                             userRole === "Agent" ?
-                                <AgentView></AgentView> : <AdminHome></AdminHome>
+                                <AgentView></AgentView> : <AdminView></AdminView>
                         :
                         <GuestVies></GuestVies>
 
                 }
             </div>
-            <RoleBasedNavigation></RoleBasedNavigation>
+
+            <div className="w-full">
+                {
+                    userStatus === 'pending' ?
+                        <h1 className="text-center text-lg font-medium text-orange-500 ">Your membership request is in process</h1>
+                        : <RoleBasedNavigation></RoleBasedNavigation>
+                }
+            </div>
         </div>
     );
 };

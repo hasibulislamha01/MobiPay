@@ -3,6 +3,7 @@ import useGetUserRole from "./useGetUserRole";
 import { BsCashCoin } from "react-icons/bs";
 import { MdHistory, MdInstallMobile } from "react-icons/md";
 import { CiWallet } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 const useNavigationOptions = () => {
     
@@ -11,27 +12,27 @@ const useNavigationOptions = () => {
 
     const options1 = [
         {
-            label: 'Send Money',
+            label: <Link to="/send-money">Send Money</Link>,
             key: 'nav1',
             icon: <FiSend />,
         },
         {
-            label: 'Cash Out',
+            label: <Link to="/cash-out">Cash Out</Link>,
             key: 'nav2',
             icon: <BsCashCoin />,
         },
         {
-            label: 'Cash In',
+            label: <Link to="/cash-in">Cash In</Link>,
             key: 'nav3',
             icon: <MdInstallMobile />,
         },
         {
-            label: 'Balance inquery',
+            label: <Link to="/balance-inquiry">Balance Inquiry</Link>,
             key: 'nav4',
             icon: <CiWallet />,
         },
         {
-            label: 'History',
+            label: <Link to="/history">History</Link>,
             key: 'nav5',
             icon: <MdHistory />,
         },
@@ -40,33 +41,32 @@ const useNavigationOptions = () => {
     
     const options2 = [
         {
-            label: 'Transaction Management',
+            label: <Link to="/transaction-management">Transaction Management</Link>,
             key: 'nav21',
             icon: <FiSend />,
         },
-        
         {
-            label: 'Balance inquery',
+            label: <Link to="/balance-inquiry">Balance Inquiry</Link>,
             key: 'nav24',
             icon: <CiWallet />,
         },
         {
-            label: 'Transactions History',
+            label: <Link to="/transactions-history">Transactions History</Link>,
             key: 'nav25',
             icon: <MdHistory />,
         },
-    ]
+    ];
 
     
     const options3 = [
         {
-            label: 'User Management',
+            label: <Link to='user-management'>Manage Users</Link>,
             key: 'nav21',
             icon: <FiSend />,
         },
         
         {
-            label: 'System Monitoring',
+            label: <Link to='system-monitoring'>System Monitoring</Link>,
             key: 'nav35',
             icon: <MdHistory />,
         },

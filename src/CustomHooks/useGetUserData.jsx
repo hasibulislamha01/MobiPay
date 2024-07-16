@@ -1,27 +1,27 @@
-import { useEffect, useState } from "react";
-import useAuth from "./useAuth";
 import axios from "axios";
+import useAuth from "./useAuth";
+import { useEffect, useState } from "react";
 
-const useGetUserRole = () => {
+const useGetUserData = () => {
 
     const server = import.meta.env.VITE_SERVER_LINK
     const { user } = useAuth()
+    const userEmail = user?.email
+
     const [userInfo, setUserInfo] = useState()
-    console.log(userInfo)
-    const userRole = userInfo?.role?.value;
-    console.log(user?.email, userRole)
 
 
     useEffect(() => {
-        axios.get(`${server}/users/${user?.email}`)
+        axios.get(`${server}/users/${userEmail}`)
             .then(res => {
                 setUserInfo(res?.data)
             }).catch(err => {
                 console.error(err?.message)
             })
-    }, [user, server])
+    }, [server, userEmail])
 
-    return userRole
+    return userInfo
+    
 };
 
-export default useGetUserRole;
+export default useGetUserData;

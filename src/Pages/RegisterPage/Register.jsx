@@ -4,28 +4,35 @@ import Swal from "sweetalert2";
 import Select from 'react-select'
 import useAuth from "../../CustomHooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 
 const Register = () => {
 
     const serverBaseURL = import.meta.env.VITE_SERVER_LINK
     const { register, handleSubmit, formState: { errors }, control } = useForm()
-    const { createUser } = useAuth()
+    const { createUser, updateUserProfile } = useAuth()
     const navigate = useNavigate()
+    const [registrationError, setRegistrationError] = useState(null)
 
     const handleSubmittedData = (data) => {
+        setRegistrationError(null)
         console.log(data)
+        const userName = data.userName
         const userEmail = data.email
         const pin = data.pin
         const password = pin.concat('@firebase')
-        console.log(password, typeof password)
+        const status = 'pending'
+        const info = {...data, status}
+        console.log(info)
 
         // creating user in firebase
         createUser(userEmail, password)
             .then(response => {
                 console.log(response.user)
+                updateUserProfile(userName, )
                 if (response.user) {
-                    axios.post(`${serverBaseURL}/users/pending`, data)
+                    axios.post(`${serverBaseURL}/users`, info)
                         .then(res => {
                             console.log(res.data)
                             if (res.data.insertedId) {
@@ -48,6 +55,7 @@ const Register = () => {
                 }
             }).catch(err => {
                 console.error(err.message)
+                setRegistrationError(err.message)
             })
 
 
@@ -62,6 +70,10 @@ const Register = () => {
         <div className="min-h-screen flex flex-col items-center justify-center">
 
             <h1 className="text-3xl">Register</h1>
+
+            {
+                registrationError && <p className="text-red-500 text-center font-medium">{registrationError}</p>
+            }
 
             <form onSubmit={handleSubmit(handleSubmittedData)} className="space-y-10">
 
