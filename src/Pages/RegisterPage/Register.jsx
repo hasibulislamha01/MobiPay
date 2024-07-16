@@ -2,34 +2,55 @@ import axios from "axios";
 import { Controller, useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import Select from 'react-select'
+import useAuth from "../../CustomHooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 
 const Register = () => {
 
     const serverBaseURL = import.meta.env.VITE_SERVER_LINK
     const { register, handleSubmit, formState: { errors }, control } = useForm()
+    const { createUser } = useAuth()
+    const navigate = useNavigate()
 
     const handleSubmittedData = (data) => {
         console.log(data)
-        axios.post(`${serverBaseURL}/users/pending`, data)
-            .then(res => {
-                console.log(res.data)
-                if (res.data.insertedId) {
-                    Swal.fire({
-                        title: "Success!",
-                        text: "Your membership request is in process!",
-                        icon: "success"
-                    });
-                } else {
-                    Swal.fire({
-                        title: "Failed!",
-                        text: "Try again!",
-                        icon: "error"
-                    });
+        const userEmail = data.email
+        const pin = data.pin
+        const password = pin.concat('@firebase')
+        console.log(password, typeof password)
+
+        // creating user in firebase
+        createUser(userEmail, password)
+            .then(response => {
+                console.log(response.user)
+                if (response.user) {
+                    axios.post(`${serverBaseURL}/users/pending`, data)
+                        .then(res => {
+                            console.log(res.data)
+                            if (res.data.insertedId) {
+                                Swal.fire({
+                                    title: "Success!",
+                                    text: "Your membership request is in process!",
+                                    icon: "success"
+                                });
+                                navigate('/')
+                            } else {
+                                Swal.fire({
+                                    title: "Failed!",
+                                    text: "Try again!",
+                                    icon: "error"
+                                });
+                            }
+                        }).catch(error => {
+                            console.error(error.message)
+                        })
                 }
-            }).catch(error => {
-                console.error(error.message)
+            }).catch(err => {
+                console.error(err.message)
             })
+
+
     }
 
     const options = [

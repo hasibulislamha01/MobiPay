@@ -1,12 +1,11 @@
 import { createContext, useEffect, useState } from "react";
 import app from "./firebase.config";
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
-import axios from "axios";
 import PropTypes from 'prop-types'
 
 
 
-const AuthContext = createContext()
+export const AuthContext = createContext()
 
 const AuthProvider = ({children}) => {
 
@@ -16,32 +15,32 @@ const AuthProvider = ({children}) => {
 
     useEffect(() => {
         onAuthStateChanged(auth, async (currentUser) => {
-            const loggedUser = { email: currentUser?.email || user?.email }
+            // const loggedUser = { email: currentUser?.email || user?.email }
             if (currentUser) {
                 console.log('user in the auth state', currentUser)
                 setUser(currentUser)
                 setLoading(false)
 
                 // generating token
-                await axios.post('https://booknest-phi.vercel.app/jwt',
-                    loggedUser,
-                    { withCredentials: true }
-                )
-                    .then(response => {
-                        console.log('token', response.data)
-                    }).catch(error => {
-                        console.error(error.message)
-                    })
+                // await axios.post('https://booknest-phi.vercel.app/jwt',
+                //     loggedUser,
+                //     { withCredentials: true }
+                // )
+                //     .then(response => {
+                //         console.log('token', response.data)
+                //     }).catch(error => {
+                //         console.error(error.message)
+                //     })
 
             } else {
-                axios.post('https://booknest-phi.vercel.app/logout',
-                    loggedUser,
-                    { withCredentials: true })
-                    .then(response => {
-                        console.log('token clear', response.data)
-                    }).catch(error => {
-                        console.error(error.message)
-                    })
+                // axios.post('https://booknest-phi.vercel.app/logout',
+                //     loggedUser,
+                //     { withCredentials: true })
+                //     .then(response => {
+                //         console.log('token clear', response.data)
+                //     }).catch(error => {
+                //         console.error(error.message)
+                //     })
                 setUser(null)
                 setLoading(false)
             }
@@ -88,7 +87,7 @@ const AuthProvider = ({children}) => {
         return signOut(auth)
     }
 
-    console.log(user);
+    // console.log(user);
 
     // these data will be passed with context api using useContext
     const authData = {
