@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import Select from 'react-select'
 
@@ -7,29 +7,29 @@ import Select from 'react-select'
 const Register = () => {
 
     const serverBaseURL = import.meta.env.VITE_SERVER_LINK
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, formState: { errors }, control } = useForm()
 
     const handleSubmittedData = (data) => {
         console.log(data)
-        // axios.post(`${serverBaseURL}/users/pending`, data)
-        //     .then(res => {
-        //         console.log(res.data)
-        //         if (res.data.insertedId) {
-        //             Swal.fire({
-        //                 title: "Success!",
-        //                 text: "Your membership request is in process!",
-        //                 icon: "success"
-        //             });
-        //         } else {
-        //             Swal.fire({
-        //                 title: "Failed!",
-        //                 text: "Try again!",
-        //                 icon: "error"
-        //             });
-        //         }
-        //     }).catch(error => {
-        //         console.error(error.message)
-        //     })
+        axios.post(`${serverBaseURL}/users/pending`, data)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        title: "Success!",
+                        text: "Your membership request is in process!",
+                        icon: "success"
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Failed!",
+                        text: "Try again!",
+                        icon: "error"
+                    });
+                }
+            }).catch(error => {
+                console.error(error.message)
+            })
     }
 
     const options = [
@@ -111,12 +111,21 @@ const Register = () => {
 
                 </div>
 
-                <Select
-                    {...register('role', { required: true })}
-                    options={options}
-                    placeholder='Register as'
-                    
-                ></Select>
+                <Controller
+                    name="role"
+                    control={control}
+                    rules={{ required: 'Role is required' }}
+                    render={({ field }) => (
+                        <Select
+                            {...field}
+                            options={options}
+                            placeholder='Register as'
+                        />
+                    )}
+                />
+
+                {errors.role && <p className="text-red-400">Role is required</p>}
+
 
                 <div className="flex justify-center mt-12">
                     <button type="submit" className="btn bg-green-800 text-white rounded-full w-[200px]">Register</button>
