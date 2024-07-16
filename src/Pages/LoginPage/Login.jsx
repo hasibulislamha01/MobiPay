@@ -8,7 +8,7 @@ const Login = () => {
 
     const { loginUser } = useAuth()
     const navigate = useNavigate()
-    const { register, handleSubmit, formState: { errors }, control } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm()
     const [firebaseErr, setFirebaseErr] = useState(null)
 
     const handleLogin = (data) => {
