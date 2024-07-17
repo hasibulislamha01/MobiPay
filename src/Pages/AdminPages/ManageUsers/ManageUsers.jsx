@@ -21,7 +21,7 @@ const ManageUsers = () => {
     return (
         <div className="min-h-screen pt-12 lg:pt-32">
             <h1 className="text-3xl text-center">Pending Users</h1>
-            <div>
+            <div className="mt-12 flex flex-col gap-6">
                 {
                     pendingUsers?.map(pendingUser =>
                         <PendingUsersCard
