@@ -23,12 +23,14 @@ const ManageUsers = () => {
             <h1 className="text-3xl text-center">Pending Users</h1>
             <div className="mt-12 flex flex-col gap-6">
                 {
-                    pendingUsers?.map(pendingUser =>
-                        <PendingUsersCard
-                            key={pendingUser?._id}
-                            pendingUser={pendingUser}
-                        ></PendingUsersCard>
-                    )
+                    pendingUsers.length !== 0 ?
+                        pendingUsers?.map(pendingUser =>
+                            <PendingUsersCard
+                                key={pendingUser?._id}
+                                pendingUser={pendingUser}
+                            ></PendingUsersCard>
+                        ) :
+                        <h1 className="text-3xl text-center text-red-400 ">No users available in pending status</h1>
                 }
             </div>
         </div>

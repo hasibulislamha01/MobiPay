@@ -40,7 +40,7 @@ const PendingUsersCard = ({ pendingUser }) => {
                 <h3>Email: <span className="">{pendingUser?.email}</span> </h3>
                 <h3>Status: <span className="">pending</span> </h3>
 
-                <div className="">
+                <div className={`${pendingUser?.status === 'approved' && 'hidden'}`}>
                     <button onClick={handleApprove} className=" btn btn-sm text-white bg-green-800">Approve</button>
                 </div>
             </div>
