@@ -9,19 +9,20 @@ const useGetUserRole = () => {
     const [userInfo, setUserInfo] = useState()
     console.log(userInfo)
     const userRole = userInfo?.role?.value;
-    console.log(user?.email, userRole)
+    const userEmail = user?.email
+    console.log("email, role", userEmail, userRole)
 
 
     useEffect(() => {
-        axios.get(`${server}/users/${user?.email}`)
+        axios.get(`${server}/users/${userEmail}`)
             .then(res => {
                 setUserInfo(res?.data)
             }).catch(err => {
                 console.error(err?.message)
             })
-    }, [user, server])
+    }, [userEmail, server])
 
-    return userRole
+    return userRole &&  userRole
 };
 
 export default useGetUserRole;

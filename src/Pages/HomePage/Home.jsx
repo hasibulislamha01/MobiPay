@@ -14,7 +14,7 @@ const Home = () => {
     const userInfo = useGetUserData()
     const userRole = userInfo?.role?.value;
     const userStatus = userInfo?.status;
-    console.log(userStatus, userRole)
+    console.log(userStatus, 'role is', userRole)
 
 
 

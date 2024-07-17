@@ -10,6 +10,7 @@ import Home from './Pages/HomePage/Home';
 import Login from './Pages/LoginPage/Login';
 import Register from './Pages/RegisterPage/Register';
 import AuthProvider from './Components/SharedComponents/Navbar/Auth/AuthProvider';
+import ManageUsers from './Pages/AdminPages/ManageUsers/ManageUsers';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,12 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>
+      },
+
+      // admin routes
+      {
+        path: "/user-management",
+        element: <ManageUsers></ManageUsers>
       },
     ]
   },

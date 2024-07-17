@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const useNavigationOptions = () => {
     
     const userRole = useGetUserRole()
-    console.log(userRole)
+    console.log("user role",userRole)
 
     const options1 = [
         {
@@ -60,17 +60,28 @@ const useNavigationOptions = () => {
     
     const options3 = [
         {
-            label: <Link to='user-management'>Manage Users</Link>,
+            label: <Link to='/user-management'>Manage Users</Link>,
             key: 'nav21',
             icon: <FiSend />,
         },
         
         {
-            label: <Link to='system-monitoring'>System Monitoring</Link>,
+            label: <Link to='/system-monitoring'>System Monitoring</Link>,
             key: 'nav35',
             icon: <MdHistory />,
         },
     ]
+
+    
+    // const options4 = [
+    //     {
+    //         label: <Link to='/user-management'>Loading...</Link>,
+    //         key: 'nav21',
+    //         icon: <FiSend />,
+    //     },
+        
+        
+    // ]
 
     let navOptions 
     if(userRole === "User"){
@@ -79,7 +90,7 @@ const useNavigationOptions = () => {
         navOptions = options2
     } else if(userRole === "Admin"){
         navOptions = options3
-    }
+    } 
 
     console.log(navOptions)
 
