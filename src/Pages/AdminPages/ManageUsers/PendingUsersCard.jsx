@@ -7,27 +7,56 @@ const PendingUsersCard = ({ pendingUser }) => {
 
     const server = import.meta.env.VITE_SERVER_LINK
     const handleApprove = () => {
-        axios.patch(`${server}/users/${pendingUser?.email}`)
-            .then(res => {
-                console.log(res?.data)
-                if (res?.data?.modifiedCount) {
-                    Swal.fire({
-                        title: "Success!",
-                        text: "You have approved the user!",
-                        icon: "success"
-                    });
-                } else {
-                    Swal.fire({
-                        title: "Sorry!",
-                        text: "An error occured!",
-                        icon: "error"
-                    });
-                }
 
-            }).catch(err => {
-                console.log(err.message)
+        console.log(pendingUser?.role?.value)
 
-            })
+        if (pendingUser?.role?.value === 'User') {
+            axios.patch(`${server}/users/user/${pendingUser?.email}`)
+                .then(res => {
+                    console.log(res?.data)
+                    if (res?.data?.modifiedCount) {
+                        Swal.fire({
+                            title: "Success!",
+                            text: "You have approved the user!",
+                            icon: "success"
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Sorry!",
+                            text: "An error occured!",
+                            icon: "error"
+                        });
+                    }
+
+                }).catch(err => {
+                    console.log(err.message)
+
+                })
+        } else if (pendingUser?.role?.value === 'Agent') {
+            axios.patch(`${server}/users/agent/${pendingUser?.email}`)
+                .then(res => {
+                    console.log(res?.data)
+                    if (res?.data?.modifiedCount) {
+                        Swal.fire({
+                            title: "Success!",
+                            text: "You have approved the Agent!",
+                            icon: "success"
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Sorry!",
+                            text: "An error occured!",
+                            icon: "error"
+                        });
+                    }
+
+                }).catch(err => {
+                    console.log(err.message)
+
+                })
+        }
+
+
     }
 
     return (
