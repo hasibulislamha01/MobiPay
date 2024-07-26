@@ -11,6 +11,7 @@ import Login from './Pages/LoginPage/Login';
 import Register from './Pages/RegisterPage/Register';
 import AuthProvider from './Components/SharedComponents/Navbar/Auth/AuthProvider';
 import ManageUsers from './Pages/AdminPages/ManageUsers/ManageUsers';
+import SendMoney from './Pages/UsersPages/SendMoney';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,12 @@ const router = createBrowserRouter([
       {
         path: "/user-management",
         element: <ManageUsers></ManageUsers>
+      },
+
+      // User routes
+      {
+        path: "/send-money",
+        element: <SendMoney></SendMoney>
       },
     ]
   },
