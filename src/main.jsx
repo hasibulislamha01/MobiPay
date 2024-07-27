@@ -12,6 +12,7 @@ import Register from './Pages/RegisterPage/Register';
 import AuthProvider from './Components/SharedComponents/Navbar/Auth/AuthProvider';
 import ManageUsers from './Pages/AdminPages/ManageUsers/ManageUsers';
 import SendMoney from './Pages/UsersPages/SendMoney';
+import CashIn from './Pages/UsersPages/CashInPage/CashIn';
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/send-money",
         element: <SendMoney></SendMoney>
+      },
+      {
+        path: "/cash-in",
+        element: <CashIn></CashIn>
       },
     ]
   },
