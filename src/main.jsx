@@ -13,6 +13,7 @@ import AuthProvider from './Components/SharedComponents/Navbar/Auth/AuthProvider
 import ManageUsers from './Pages/AdminPages/ManageUsers/ManageUsers';
 import SendMoney from './Pages/UsersPages/SendMoney';
 import CashIn from './Pages/UsersPages/CashInPage/CashIn';
+import CashOut from './Pages/UsersPages/CashOutPage/CashOut';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/cash-in",
         element: <CashIn></CashIn>
+      },
+      {
+        path: "/cash-out",
+        element: <CashOut></CashOut>
       },
     ]
   },
