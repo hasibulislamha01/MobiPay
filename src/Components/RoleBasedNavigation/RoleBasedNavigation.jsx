@@ -1,6 +1,6 @@
 import { Menu } from "antd";
 import { useState } from "react";
-import useNavigationOptions from "../../../../CustomHooks/useNavigationOptions";
+import useNavigationOptions from "../../CustomHooks/useNavigationOptions";
 
 const RoleBasedNavigation = () => {
 

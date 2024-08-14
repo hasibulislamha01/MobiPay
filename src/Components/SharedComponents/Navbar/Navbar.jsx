@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import useAuth from "../../../CustomHooks/useAuth";
-import { AuthContext } from "./Auth/AuthProvider";
+import { AuthContext } from "../../Auth/AuthProvider";
 
 
 

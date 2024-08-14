@@ -56,8 +56,7 @@ const Login = () => {
                         className="input input-bordered w-full max-w-xs"
                     />
                     {errors.email && <p className="text-red-400">email is required.</p>}
-                    <div className="label">
-                    </div>
+                    
                 </label>
 
                 <label className="form-control w-full max-w-xs">
@@ -71,8 +70,7 @@ const Login = () => {
                         className="input input-bordered w-full max-w-xs" 
                         />
                         {errors.pin && <p className="text-red-400">Pin is required.</p>}
-                    <div className="label">
-                    </div>
+                    
                 </label>
 
                 <div className="flex justify-center">

@@ -9,11 +9,12 @@ import Root from './Layout/Root';
 import Home from './Pages/HomePage/Home';
 import Login from './Pages/LoginPage/Login';
 import Register from './Pages/RegisterPage/Register';
-import AuthProvider from './Components/SharedComponents/Navbar/Auth/AuthProvider';
+import AuthProvider from './Components/Auth/AuthProvider';
 import ManageUsers from './Pages/AdminPages/ManageUsers/ManageUsers';
 
 import SystemMonitor from './Pages/AdminPages/SystemMontor/SystemMonitor';
 import BalanceInquiry from './Pages/UserPages/BalanceInquiryPage/BalanceInquiry';
+import SendMoney from './Pages/UserPages/SendMoneyPage/SendMoney';
 
 
 
@@ -65,7 +66,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/send-money',
-        element: <BalanceInquiry></BalanceInquiry>
+        element: <SendMoney></SendMoney>
 
       },
     ]

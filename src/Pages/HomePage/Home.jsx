@@ -5,8 +5,8 @@ import UserView from "./UserView";
 import AgentView from "./AgentView";
 import AdminView from "./AdminView";
 import { Toaster } from "react-hot-toast";
-import RoleBasedNavigation from "../../Components/SharedComponents/Navbar/RoleBasedNavigation/RoleBasedNavigation";
 import useGetUserData from "../../CustomHooks/useGetUserData";
+import RoleBasedNavigation from "../../Components/RoleBasedNavigation/RoleBasedNavigation";
 
 const Home = () => {
 
