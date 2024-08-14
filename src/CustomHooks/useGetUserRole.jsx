@@ -10,7 +10,7 @@ const useGetUserRole = () => {
     console.log(userInfo)
     const userRole = userInfo?.role?.value;
     const userEmail = user?.email
-    console.log("email, role", userEmail, userRole)
+    console.log("Server link is", server,  "email", userEmail, "role", userRole)
 
 
     useEffect(() => {
