@@ -67,7 +67,7 @@ const Login = () => {
                     <input
                         {...register('pin', { required: true })}
                         type="number"
-                        placeholder="Type here"
+                        placeholder="Enter Your 5 digit pin"
                         className="input input-bordered w-full max-w-xs" 
                         />
                         {errors.pin && <p className="text-red-400">Pin is required.</p>}
